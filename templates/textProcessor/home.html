@@ -1,0 +1,243 @@
+{% extends 'textProcessor/base.html' %}
+{% load static %}
+
+{% block title %}{{title}}{% endblock %}
+
+
+{% block css %}
+<style>
+    @media only screen and (max-width: 770px) {
+        .imageMedia {
+            display: none;
+        }
+    }
+
+    .textShow {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .content {
+        position: absolute;
+        top: 40%;
+        left: 20%;
+        border: green solid 1px;
+    }
+</style>
+{%endblock%}
+
+
+
+{% block body%}
+<div class="page-content bg-white">
+    <!--Team--->
+    <div class="section-full bg-white content-inner">
+        <div class="alert alert-success alert-dismissible fade show mt-4" role="alert" style="height:177px; width:100%">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="imageMedia"
+                        style="border-radius: 50%;height: 150px; width:150px ; background-color: white;">
+                        <img class="ml-4 mt-3 " src="{% static 'images/projects/jsonConvertor/image1.png'%}" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6 text-center mt-5">
+                    <h2 class="title">Text Processor</h2>
+                </div>
+                <div class="col-md-3 ">
+                    <div class="imageMedia"
+                        style="border-radius: 50%;height: 150px; width:150px ; background-color: white;">
+                        <img class="ml-4 mt-4" style="height: 90px; width: 110px;"
+                            src="{% static 'images/projects/jsonConvertor/image2.png'%}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+
+            <div class="row dlab-team10-area">
+                <div class="container-fluid">
+
+                    <form action="" method="get">
+                        <div class="row">
+
+                            <div class="mt-5 col-md-4 mb-3">
+                                <div class="section-head text-black text-center">
+                                    <h3 class="title text-success">Enter Text</h3>
+                                </div>
+                                <div class="textShow" id="input"></div>
+                            </div>
+
+
+                            <div class="col-md-4 mt-5 mb-3">
+                                <div class="section-head text-black text-center">
+                                    <h3 class="title text-success">Option</h3>
+                                </div>
+                                <div id="options"
+                                    class="section-full bg-white content-inner overlay-black-dark bg-img-fix text-white"
+                                    style='background-image:url(/static/images/projects/jsonConvertor/bg.jpg);'>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div
+                                                    class="section-content box-sort-in m-b10 p-b0 button-example m-b30 ">
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-lg-12">
+                                                            <ul class="list-box" style="list-style-type: none;">
+                                                                <li>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                            id="PunctuationRemover">
+                                                                        <label class="form-check-label"
+                                                                            for="PunctuationRemover">
+                                                                            Punctuation Remover
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+
+                                                            </ul>
+                                                            <ul class="list-box" style="list-style-type: none;">
+                                                                <li>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                            id="ToUpperConvertor">
+                                                                        <label class="form-check-label"
+                                                                            for="ToUpperConvertor">
+                                                                            To Upper Convertor
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+
+                                                            </ul>
+                                                            <ul class="list-box" style="list-style-type: none;">
+                                                                <li>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                            id="LineRemover">
+                                                                        <label class="form-check-label"
+                                                                            for="LineRemover">
+                                                                            Line Remover
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+
+                                                            </ul>
+                                                            <ul class="list-box" style="list-style-type: none;">
+                                                                <li>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                            id="ExtraSpaceRemover">
+                                                                        <label class="form-check-label"
+                                                                            for="ExtraSpaceRemover">
+                                                                            Extra Space Remover
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+
+                                                            </ul>
+                                                            <ul class="list-box" style="list-style-type: none;">
+                                                                <li>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                            id="JSONconvertor">
+                                                                        <label class="form-check-label"
+                                                                            for="JSONconvertor">
+                                                                            JSON Convertor
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+
+                                                            </ul>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-content box-sort-in  button-example m-b30 text-center">
+                                            <button class="site-button button-lg green radius-xl  m-r15" type="button"
+                                                onclick="processText()">Process</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="mt-5 col-md-4 mb-3" id="rightEditor">
+                                <div class="section-head text-black text-center">
+                                    <h3 class="title text-success">Processed</h3>
+                                </div>
+                                <div class="textShow" id="output"></div>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Team End--->
+</div>
+{%endblock%}
+
+
+{% block script %}
+<script src="{%static 'ace/build/src-noconflict/ace.js'%}"></script>
+<script>
+    $(document).ready(function () {
+        const height = $("#options").outerHeight();
+        $("#input")[0].style.height = height + "px";
+        $("#output")[0].style.height = height + "px";
+
+        var editor;
+        $('.textShow').each(function (index) {
+            editor = ace.edit(this);
+            editor.autoIndent(true);
+            editor.setTheme("ace/theme/gob");
+            const nmode = "ace/mode/tex";
+            editor.session.setMode(nmode);
+        });
+    })
+
+    function processText() {
+        var editor = ace.edit("input");
+        window.result = editor.getSession().getValue();
+        editor = ace.edit("output");
+
+        const options = {
+            "PunctuationRemover": "{%url 'PunctuationRemover'%}",
+            "ToUpperConvertor": "{%url 'ToUpperConvertor'%}",
+            "LineRemover": "{%url 'LineRemover'%}",
+            "ExtraSpaceRemover": "{%url 'ExtraSpaceRemover'%}",
+            "JSONconvertor": "{%url 'JSONconvertor'%}",
+            
+        }
+
+        for (const key in options) {
+            if ($("#" + key).prop("checked")) {
+                const url = options[key];
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: {
+                        text: window.result,
+                        csrfmiddlewaretoken: '{{csrf_token}}',
+                    },
+                    success: function (data) {
+                        if (!data || data.length == 0) return;
+                        data = JSON.parse(data)
+                        window.result = data["result"];
+                    },
+                    async: false,
+                });
+            }
+        }
+
+        editor.session.setValue(window.result);
+    }
+</script>
+{%endblock%}
